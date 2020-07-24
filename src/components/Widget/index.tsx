@@ -27,6 +27,9 @@ type Props = {
   imagePreview?: boolean;
   zoomStep?: number;
   handleSubmit?: AnyFunction;
+  onFileUpload?: AnyFunction;
+  onEdit?: AnyFunction;
+  onRestart?: AnyFunction;
 }
 
 function Widget({
@@ -49,10 +52,12 @@ function Widget({
   showTimeStamp,
   imagePreview,
   zoomStep,
-  handleSubmit
+  handleSubmit,
+  onRestart,
+  onEdit,
+  onFileUpload
 }: Props) {
   const dispatch = useDispatch();
-
   const toggleConversation = () => {
     dispatch(toggleChat());
   }
@@ -60,9 +65,9 @@ function Widget({
   const handleMessageSubmit = (event) => {
     event.preventDefault();
     const userInput = event.target.message.value;
-    
-    if (!userInput.trim()) {      
-      return;      
+
+    if (!userInput.trim()) {
+      return;
     }
 
     handleSubmit?.(userInput);
@@ -97,6 +102,9 @@ function Widget({
       sendButtonAlt={sendButtonAlt}
       showTimeStamp={showTimeStamp}
       imagePreview={imagePreview}
+      onFileUpload={onFileUpload}
+      onRestart={onRestart}
+      onEdit={onEdit}
       zoomStep={zoomStep}
     />
   );
