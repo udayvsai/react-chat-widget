@@ -16,7 +16,7 @@ export default class App extends Component {
     setTimeout(() => {
       toggleMsgLoader();
       if (newMessage === 'fruits') {
-        setQuickButtons([ { label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' } ]);
+        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }]);
       } else {
         addResponseMessage(newMessage);
       }
@@ -29,17 +29,29 @@ export default class App extends Component {
   }
 
   handleSubmit = (msgText: string) => {
-    if(msgText.length < 80) {
+    if (msgText.length < 80) {
       addUserMessage("Uh oh, please write a bit more.");
       return false;
     }
     return true;
   }
 
+  onFileUpload = (e) => {
+    alert('File Uploaded')
+  }
+
+  onRestart = (e) => {
+    alert('restart clicked')
+  }
+
+  onEdit = (e) => {
+    alert('Edit clicked')
+  }
+
   render() {
     return (
       <div>
-        <button style={{position: 'absolute', right: 40, bottom: 150}}>test</button>
+        <button style={{ position: 'absolute', right: 40, bottom: 150 }}>test</button>
         <Widget
           title="Bienvenido"
           subtitle="Asistente virtual"
@@ -47,6 +59,9 @@ export default class App extends Component {
           handleNewUserMessage={this.handleNewUserMessage}
           handleQuickButtonClicked={this.handleQuickButtonClicked}
           imagePreview
+          onRestart={this.onRestart}
+          onEdit={this.onEdit}
+          onFileUpload={this.onFileUpload}
           handleSubmit={this.handleSubmit}
         />
       </div>

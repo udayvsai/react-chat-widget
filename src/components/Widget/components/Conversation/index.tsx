@@ -23,6 +23,9 @@ type Props = {
   profileAvatar?: string;
   titleAvatar?: string;
   onQuickButtonClicked?: AnyFunction;
+  onFileUpload?: (event: any) => void;
+  onRestart?: (event: any) => void;
+  onEdit?: (event: any) => void;
   onTextInputChange?: (event: any) => void;
   sendButtonAlt: string;
   showTimeStamp: boolean;
@@ -42,7 +45,10 @@ function Conversation({
   titleAvatar,
   onQuickButtonClicked,
   onTextInputChange,
+  onFileUpload,
   sendButtonAlt,
+  onRestart,
+  onEdit,
   showTimeStamp
 }: Props) {
   return (
@@ -62,6 +68,9 @@ function Conversation({
         disabledInput={disabledInput}
         autofocus={autofocus}
         onTextInputChange={onTextInputChange}
+        onFileUpload={onFileUpload}
+        onRestart={onRestart}
+        onEdit={onEdit}
         buttonAlt={sendButtonAlt}
       />
     </div>

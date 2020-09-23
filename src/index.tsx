@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import Widget from './components/Widget';
 
-import store from  './store';
+import store from './store';
 
 import { AnyFunction } from './utils/types';
 
@@ -28,6 +28,9 @@ type Props = {
   imagePreview?: boolean;
   zoomStep?: number;
   handleSubmit?: AnyFunction;
+  onFileUpload?: AnyFunction;
+  onRestart?: AnyFunction;
+  onEdit?: AnyFunction;
 } & typeof defaultProps;
 
 function ConnectedWidget({
@@ -43,6 +46,9 @@ function ConnectedWidget({
   handleNewUserMessage,
   handleQuickButtonClicked,
   handleTextInputChange,
+  onFileUpload,
+  onRestart,
+  onEdit,
   chatId,
   launcherOpenLabel,
   launcherCloseLabel,
@@ -65,6 +71,9 @@ function ConnectedWidget({
         showCloseButton={showCloseButton}
         fullScreenMode={fullScreenMode}
         autofocus={autofocus}
+        onFileUpload={onFileUpload}
+        onRestart={onRestart}
+        onEdit={onEdit}
         customLauncher={launcher}
         handleTextInputChange={handleTextInputChange}
         chatId={chatId}
