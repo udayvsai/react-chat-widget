@@ -8,10 +8,11 @@ import './style.scss';
 
 type Props = {
   onQuickButtonClicked?: AnyFunction;
+  chatId: string
 }
 
-function QuickButtons({ onQuickButtonClicked }: Props) {
-  const buttons = useSelector((state: GlobalState) => state.quickButtons.quickButtons);
+function QuickButtons({ onQuickButtonClicked, chatId }: Props) {
+  const buttons = useSelector((state: GlobalState) => state.quickButtons.quickButtons ? state.quickButtons.quickButtons[chatId] : []);
 
   const getComponentToRender = (button: QuickButton) => {
     const ComponentToRender = button.component;
@@ -32,7 +33,7 @@ function QuickButtons({ onQuickButtonClicked }: Props) {
           <li className="quick-list-button" key={`${button.label}-${index}`}>
             {getComponentToRender(button)}
           </li>
-          )
+        )
         }
       </ul>
     </div>

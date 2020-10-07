@@ -16,14 +16,15 @@ type Props = {
   autofocus: boolean;
   sendMessage: (event: any) => void;
   buttonAlt: string;
+  chatId: string;
   onTextInputChange?: (event: any) => void;
   onFileUpload?: (event: any) => void;
   onRestart?: (event: any) => void;
   onEdit?: (event: any) => void;
 }
 
-function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt, onFileUpload, onRestart, onEdit }: Props) {
-  const showChat = useSelector((state: GlobalState) => state.behavior.showChat);
+function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, chatId, buttonAlt, onFileUpload, onRestart, onEdit }: Props) {
+  const showChat = useSelector((state: GlobalState) => state.behavior[chatId].showChat);
   const inputRef = useRef(null);
   // @ts-ignore
   useEffect(() => { if (showChat) inputRef.current?.focus(); }, [showChat]);

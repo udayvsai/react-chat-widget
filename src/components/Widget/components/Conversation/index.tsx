@@ -14,6 +14,7 @@ type Props = {
   title: string;
   subtitle: string;
   senderPlaceHolder: string;
+  chatId: string;
   showCloseButton: boolean;
   disabledInput: boolean;
   autofocus: boolean;
@@ -43,6 +44,7 @@ function Conversation({
   toggleChat,
   profileAvatar,
   titleAvatar,
+  chatId,
   onQuickButtonClicked,
   onTextInputChange,
   onFileUpload,
@@ -60,9 +62,10 @@ function Conversation({
         showCloseButton={showCloseButton}
         titleAvatar={titleAvatar}
       />
-      <Messages profileAvatar={profileAvatar} showTimeStamp={showTimeStamp} />
-      <QuickButtons onQuickButtonClicked={onQuickButtonClicked} />
+      <Messages chatId={chatId} profileAvatar={profileAvatar} showTimeStamp={showTimeStamp} />
+      <QuickButtons chatId={chatId} onQuickButtonClicked={onQuickButtonClicked} />
       <Sender
+        chatId={chatId}
         sendMessage={sendMessage}
         placeholder={senderPlaceHolder}
         disabledInput={disabledInput}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { toggleChat, addUserMessage } from '../../store/actions';
@@ -58,8 +58,12 @@ function Widget({
   onFileUpload
 }: Props) {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: 'INIT_STATE', chatId: chatId })
+  }, [])
+
   const toggleConversation = () => {
-    dispatch(toggleChat());
+    dispatch(toggleChat(chatId));
   }
 
   const handleMessageSubmit = (event) => {
@@ -71,7 +75,7 @@ function Widget({
     }
 
     handleSubmit?.(userInput);
-    dispatch(addUserMessage(userInput));
+    dispatch(addUserMessage(userInput, chatId,));
     handleNewUserMessage(userInput);
     event.target.message.value = '';
   }

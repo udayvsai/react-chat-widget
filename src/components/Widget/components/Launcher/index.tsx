@@ -21,17 +21,17 @@ type Props = {
 function Launcher({ toggle, chatId, openLabel, closeLabel }: Props) {
   const dispatch = useDispatch();
   const { showChat, badgeCount } = useSelector((state: GlobalState) => ({
-    showChat: state.behavior.showChat,
-    badgeCount: state.messages.badgeCount
+    showChat: state.behavior[chatId]?.showChat,
+    badgeCount: state.messages[chatId]?.badgeCount
   }));
 
   const toggleChat = () => {
     toggle();
-    if (!showChat) dispatch(setBadgeCount(0));
+    if (!showChat) dispatch(setBadgeCount(0, chatId));
   }
 
   return (
-    <button type="button" className={cn('rcw-launcher', { 'rcw-hide-sm': showChat })} onClick={toggleChat} aria-controls={chatId}>
+    <button type="button" className={cn(`rcw-launcher ${chatId}`, { 'rcw-hide-sm': showChat })} onClick={toggleChat} aria-controls={chatId}>
       {!showChat && <Badge badge={badgeCount} />}
       {showChat ?
         <img src={close} className="rcw-close-launcher" alt={openLabel} /> :

@@ -1,13 +1,14 @@
 @import 'animation';
 @import 'common';
 
+// position: fixed will fix widget to bottom left so, when multiple rendered it will be overlapped 
 .rcw-widget-container {
   bottom: 0;
   display: flex;
   flex-direction: column;
   margin: 0 20px 20px 0;
   max-width: 370px;
-  position: fixed;
+  // position: fixed;
   right: 0;
   width: 90vw;
   z-index: 9999;

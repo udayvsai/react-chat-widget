@@ -1,36 +1,48 @@
 import React, { Component } from 'react';
 
-import { Widget, addResponseMessage, setQuickButtons, toggleMsgLoader, addLinkSnippet } from '../index';
-import { addUserMessage } from '..';
+import { Widget, addUserMessage, addResponseMessage, setQuickButtons, toggleMsgLoader, addLinkSnippet } from '../index';
 
 export default class App extends Component {
   componentDidMount() {
-    addResponseMessage('Welcome to this awesome chat!');
-    addLinkSnippet({ link: 'https://google.com', title: 'Google' });
-    addResponseMessage('![](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)');
-    addResponseMessage('![vertical](https://d2sofvawe08yqg.cloudfront.net/reintroducing-react/hero2x?1556470143)');
+    addResponseMessage('Welcome to this awesome chat!', '123')
+    addResponseMessage('Welcome to this awesome bb chat!', "456");
+    addLinkSnippet({ link: 'https://google.com', title: 'Google' }, '123');
+    addResponseMessage('![](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)', '123');
+    addResponseMessage('![vertical](https://d2sofvawe08yqg.cloudfront.net/reintroducing-react/hero2x?1556470143)', '123');
   }
 
-  handleNewUserMessage = (newMessage: any) => {
-    toggleMsgLoader();
+  handleANewUserMessage = (newMessage: any) => {
+    toggleMsgLoader('123');
     setTimeout(() => {
-      toggleMsgLoader();
+      toggleMsgLoader('123');
       if (newMessage === 'fruits') {
-        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }]);
+        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }], '123');
       } else {
-        addResponseMessage(newMessage);
+        addResponseMessage(newMessage, "123");
       }
     }, 2000);
   }
 
-  handleQuickButtonClicked = (e: any) => {
-    addResponseMessage('Selected ' + e);
-    setQuickButtons([]);
+  handleBNewUserMessage = (newMessage: any) => {
+    toggleMsgLoader('456');
+    setTimeout(() => {
+      toggleMsgLoader('456');
+      if (newMessage === 'fruits') {
+        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }], '456');
+      } else {
+        addResponseMessage(newMessage, "456");
+      }
+    }, 2000);
+  }
+
+  handleAQuickButtonClicked = (e: any) => {
+    addResponseMessage('Selected ' + e, '123');
+    setQuickButtons([], '123');
   }
 
   handleSubmit = (msgText: string) => {
     if (msgText.length < 80) {
-      addUserMessage("Uh oh, please write a bit more.");
+      addUserMessage("Uh oh, please write a bit more.", '123');
       return false;
     }
     return true;
@@ -48,17 +60,32 @@ export default class App extends Component {
     alert('Edit clicked')
   }
 
+  // MAYDAY
   render() {
     return (
-      <div>
-        <button style={{ position: 'absolute', right: 40, bottom: 150 }}>test</button>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Widget
-          title="Bienvenido"
-          subtitle="Asistente virtual"
-          senderPlaceHolder="Escribe aquí ..."
-          handleNewUserMessage={this.handleNewUserMessage}
-          handleQuickButtonClicked={this.handleQuickButtonClicked}
+          title="Widget 1 "
+          senderPlaceHolder="send"
+          handleNewUserMessage={this.handleANewUserMessage}
+          handleQuickButtonClicked={this.handleAQuickButtonClicked}
           imagePreview
+          chatId={'123'}
+          onRestart={this.onRestart}
+          onEdit={this.onEdit}
+          onFileUpload={this.onFileUpload}
+          handleSubmit={this.handleSubmit}
+        />
+        <button onClick={e => addResponseMessage('w1', "123")} style={{ position: 'absolute', right: 40, bottom: 150 }}>Add to W1</button>
+        <button onClick={e => addResponseMessage('w2', "456")} style={{ position: 'absolute', right: 40, bottom: 130 }}>Add to W2</button>
+
+        <Widget
+          title="Widget 2"
+          senderPlaceHolder="send"
+          handleNewUserMessage={this.handleBNewUserMessage}
+          handleQuickButtonClicked={this.handleAQuickButtonClicked}
+          imagePreview
+          chatId={'456'}
           onRestart={this.onRestart}
           onEdit={this.onEdit}
           onFileUpload={this.onFileUpload}

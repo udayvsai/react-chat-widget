@@ -1,4 +1,5 @@
 import { createStore, combineReducers, compose } from 'redux';
+import { namespaced } from 'redux-subspace'
 
 import behavior from './reducers/behaviorReducer';
 import messages from './reducers/messagesReducer';
@@ -11,7 +12,7 @@ declare global {
   }
 }
 
-const composeEnhancers =   (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const composeEnhancers = (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const reducer = combineReducers({ behavior, messages, quickButtons, preview });
 
 export default createStore(reducer, composeEnhancers());
