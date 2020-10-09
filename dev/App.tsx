@@ -63,7 +63,7 @@ export default class App extends Component {
           onEdit={this.onEdit}
           onFileUpload={this.onFileUpload}
           handleSubmit={this.handleSubmit}
-        />
+        /> */}
       </div>
     );
   }
