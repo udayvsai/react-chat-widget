@@ -1,5 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { isMobile } from 'react-device-detect';
 
 import { GlobalState } from 'src/store/types';
 
@@ -29,13 +30,25 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
   // @ts-ignore
   useEffect(() => { if (showChat) inputRef.current?.focus(); }, [showChat]);
 
+  const onKeyPress = (e) => {
+    if (e.keyCode === 13 && (e.shiftKey || isMobile)) {
+      e.preventDefault();
+      let msg_text = e.target.value + "  \n";
+      // @ts-ignore
+      inputRef.current.value = msg_text
+    } else if (e.keyCode === 13) {
+      e.target['message'] = { value: e.target.value }
+      e.target.value = ''
+      sendMessage(e)
+    }
+  };
+
   return (
     <form className="rcw-sender" onSubmit={sendMessage}>
       <div className="rcw-send">
         <img src={restart} className="rcw-send-icon" onClick={onRestart} alt="restart chat" />
       </div>
-      <input
-        type="text"
+      <textarea
         className="rcw-new-message"
         name="message"
         ref={inputRef}
@@ -43,6 +56,7 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
         disabled={disabledInput}
         autoFocus={autofocus}
         autoComplete="off"
+        onKeyDown={onKeyPress}
         onChange={onTextInputChange}
       />
       <div className="rcw-send">

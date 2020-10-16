@@ -1,5 +1,4 @@
 import { createStore, combineReducers, compose } from 'redux';
-import { namespaced } from 'redux-subspace'
 
 import behavior from './reducers/behaviorReducer';
 import messages from './reducers/messagesReducer';
