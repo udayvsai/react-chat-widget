@@ -16,7 +16,7 @@ export default class App extends Component {
     setTimeout(() => {
       toggleMsgLoader();
       if (newMessage === 'fruits') {
-        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }]);
+        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }], false);
       } else {
         addResponseMessage(newMessage);
       }
@@ -25,7 +25,7 @@ export default class App extends Component {
 
   handleQuickButtonClicked = (e: any) => {
     addResponseMessage('Selected ' + e);
-    setQuickButtons([]);
+    setQuickButtons([], false);
   }
 
   handleSubmit = (msgText: string) => {
@@ -55,7 +55,7 @@ export default class App extends Component {
         <Widget
           title="Bienvenido"
           subtitle="Asistente virtual"
-          senderPlaceHolder="Escribe aquí ..."
+          senderPlaceHolder="Enter Here ..."
           handleNewUserMessage={this.handleNewUserMessage}
           handleQuickButtonClicked={this.handleQuickButtonClicked}
           imagePreview

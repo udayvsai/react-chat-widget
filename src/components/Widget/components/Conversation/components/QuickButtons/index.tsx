@@ -16,7 +16,6 @@ const style = {
 } as CSSProperties
 
 const style2 = {
-  height: '70px',
   boxShadow: 'inset 0px 10px 10px -10px #000000'
 } as CSSProperties
 
@@ -41,7 +40,7 @@ function QuickButtons({ onQuickButtonClicked }: Props) {
   if (!buttons.length) return null;
 
   return (
-    <div className="quick-buttons-container" style={!isHorizontal ? { ...style2 } : {}}>
+    <div className="quick-buttons-container" style={!isHorizontal ? { ...style2, height: buttons.length <= 5 ? `${buttons.length * 50}px` : '250px' } : {}}>
       <ul className="quick-buttons" style={!isHorizontal ? { ...style } : {}}>
         {buttons.map((button, index) =>
           <li className="quick-list-button" style={!isHorizontal ? { ...style3 } : {}} key={`${button.label}-${index}`}>
