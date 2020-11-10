@@ -16,7 +16,7 @@ export default class App extends Component {
     setTimeout(() => {
       toggleMsgLoader();
       if (newMessage === 'fruits') {
-        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }], false);
+        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }, { label: 'Apple', value: 'apple' }, { label: 'Apple', value: 'apple' }, { label: 'Apple', value: 'apple' }, { label: 'Apple', value: 'apple' }], false);
       } else {
         addResponseMessage(newMessage);
       }

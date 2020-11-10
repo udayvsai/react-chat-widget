@@ -40,7 +40,7 @@ function QuickButtons({ onQuickButtonClicked }: Props) {
   if (!buttons.length) return null;
 
   return (
-    <div className="quick-buttons-container" style={!isHorizontal ? { ...style2, height: buttons.length <= 5 ? `${buttons.length * 40}px` : '250px' } : {}}>
+    <div className="quick-buttons-container" style={!isHorizontal ? { ...style2, height: buttons.length <= 5 ? `${buttons.length * 50}px` : '250px' } : {}}>
       <ul className="quick-buttons" style={!isHorizontal ? { ...style } : {}}>
         {buttons.map((button, index) =>
           <li className="quick-list-button" style={!isHorizontal ? { ...style3 } : {}} key={`${button.label}-${index}`}>
