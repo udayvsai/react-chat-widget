@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { isMobile } from 'react-device-detect';
+import ReactTooltip from "react-tooltip";
 
 import { GlobalState } from 'src/store/types';
 
@@ -43,34 +44,42 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
   };
 
   return (
-    <form className="rcw-sender" onSubmit={sendMessage}>
-      <div className="rcw-send">
-        <img src={restart} className="rcw-send-icon" onClick={onRestart} alt="restart chat" />
-      </div>
-      <textarea
-        className="rcw-new-message"
-        name="message"
-        ref={inputRef}
-        placeholder={placeholder}
-        disabled={disabledInput}
-        autoFocus={autofocus}
-        autoComplete="off"
-        onKeyDown={onKeyPress}
-        onChange={onTextInputChange}
-      />
-      <div className="rcw-send">
-        <img src={editInput} className="rcw-send-icon" onClick={onEdit} alt="Edit Input" />
-      </div>
-      <div className="rcw-send">
-        <label htmlFor="file-input">
-          <img src={upload} className="rcw-send-icon" alt="File Input" />
-        </label>
-        <input id="file-input" type="file" onChange={onFileUpload} style={{ display: 'none' }} />
-      </div>
-      <button type="submit" className="rcw-send">
-        <img src={send} className="rcw-send-icon" alt={buttonAlt} />
-      </button>
-    </form>
+    <>
+      <form className="rcw-sender" onSubmit={sendMessage}>
+        <div className="rcw-send">
+          <img src={restart} data-tip data-for="restart" className="rcw-send-icon" onClick={onRestart} alt="restart chat" />
+        </div>
+        <div className="rcw-send">
+          <img src={editInput} data-tip data-for="edit" className="rcw-send-icon" onClick={onEdit} alt="Edit Input" />
+        </div>
+        <textarea
+          className="rcw-new-message"
+          name="message"
+          ref={inputRef}
+          placeholder={placeholder}
+          disabled={disabledInput}
+          autoFocus={autofocus}
+          autoComplete="off"
+          onKeyDown={onKeyPress}
+          onChange={onTextInputChange}
+        />
+        <div className="rcw-send">
+          <label htmlFor="file-input">
+            <img src={upload} className="rcw-send-icon" alt="File Input" />
+          </label>
+          <input id="file-input" type="file" onChange={onFileUpload} style={{ display: 'none' }} />
+        </div>
+        <button type="submit" className="rcw-send">
+          <img src={send} className="rcw-send-icon" alt={buttonAlt} />
+        </button>
+      </form>
+      <ReactTooltip id="restart" place="top" effect="solid">
+        Refresh and Restart the journey from the first step
+      </ReactTooltip>
+      <ReactTooltip id="edit" place="top" effect="solid">
+        Click here to Edit the responses entered by you till now
+      </ReactTooltip>
+    </>
   );
 }
 

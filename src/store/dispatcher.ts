@@ -40,8 +40,8 @@ export function isWidgetOpened(): boolean {
   return store.getState().behavior.showChat;
 }
 
-export function setQuickButtons(buttons: Array<{ label: string, value: string | number }>) {
-  store.dispatch(actions.setQuickButtons(buttons));
+export function setQuickButtons(buttons: Array<{ label: string, value: string | number }>, isHorizontal: Boolean) {
+  store.dispatch(actions.setQuickButtons(buttons, isHorizontal));
 }
 
 export function deleteMessages(count: number, id?: string) {

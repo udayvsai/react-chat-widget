@@ -50,6 +50,7 @@ export interface MessagesState {
 
 export interface QuickButtonsState {
   quickButtons: QuickButton[];
+  isHorizontal: Boolean;
 }
 
 export interface ImageState {

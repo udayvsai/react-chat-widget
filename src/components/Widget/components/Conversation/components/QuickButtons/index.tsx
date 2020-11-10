@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 
 import { GlobalState, QuickButton } from 'src/store/types';
@@ -10,8 +10,23 @@ type Props = {
   onQuickButtonClicked?: AnyFunction;
 }
 
+const style = {
+  display: 'flex',
+  flexDirection: 'column'
+} as CSSProperties
+
+const style2 = {
+  height: '70px',
+  boxShadow: 'inset 0px 10px 10px -10px #000000'
+} as CSSProperties
+
+const style3 = {
+  marginBottom: '10px'
+} as CSSProperties
+
 function QuickButtons({ onQuickButtonClicked }: Props) {
   const buttons = useSelector((state: GlobalState) => state.quickButtons.quickButtons);
+  const isHorizontal = useSelector((state: GlobalState) => state.quickButtons.isHorizontal);
 
   const getComponentToRender = (button: QuickButton) => {
     const ComponentToRender = button.component;
@@ -26,13 +41,13 @@ function QuickButtons({ onQuickButtonClicked }: Props) {
   if (!buttons.length) return null;
 
   return (
-    <div className="quick-buttons-container">
-      <ul className="quick-buttons">
+    <div className="quick-buttons-container" style={!isHorizontal ? { ...style2 } : {}}>
+      <ul className="quick-buttons" style={!isHorizontal ? { ...style } : {}}>
         {buttons.map((button, index) =>
-          <li className="quick-list-button" key={`${button.label}-${index}`}>
+          <li className="quick-list-button" style={!isHorizontal ? { ...style3 } : {}} key={`${button.label}-${index}`}>
             {getComponentToRender(button)}
           </li>
-          )
+        )
         }
       </ul>
     </div>

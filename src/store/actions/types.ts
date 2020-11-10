@@ -74,6 +74,7 @@ export interface DeleteMessages {
 export interface SetQuickButtons {
   type: typeof SET_QUICK_BUTTONS;
   buttons: Array<{ label: string, value: string | number }>;
+  isHorizontal: Boolean
 }
 
 export interface SetBadgeCount {
@@ -88,7 +89,7 @@ export interface MarkAllMessagesRead {
 export type BehaviorActions = ToggleChat | ToggleInputDisabled | ToggleMsgLoader;
 
 export type MessagesActions = AddUserMessage | AddResponseMessage | AddLinkSnippet | RenderCustomComponent
-                              | DropMessages | HideAvatar | DeleteMessages | MarkAllMessagesRead | SetBadgeCount;
+  | DropMessages | HideAvatar | DeleteMessages | MarkAllMessagesRead | SetBadgeCount;
 
 export type QuickButtonsActions = SetQuickButtons;
 
