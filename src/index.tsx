@@ -31,6 +31,10 @@ type Props = {
   onFileUpload?: AnyFunction;
   onRestart?: AnyFunction;
   onEdit?: AnyFunction;
+  showMap?: boolean;
+  onMapClose?: AnyFunction;
+  onLocationSubmit?: AnyFunction;
+  defaultMapProps?: object;
 } & typeof defaultProps;
 
 function ConnectedWidget({
@@ -56,7 +60,11 @@ function ConnectedWidget({
   showTimeStamp,
   imagePreview,
   zoomStep,
-  handleSubmit
+  handleSubmit,
+  showMap,
+  onMapClose,
+  onLocationSubmit,
+  defaultMapProps
 }: Props) {
   return (
     <Provider store={store}>
@@ -84,6 +92,10 @@ function ConnectedWidget({
         imagePreview={imagePreview}
         zoomStep={zoomStep}
         handleSubmit={handleSubmit}
+        showMap={showMap}
+        onMapClose={onMapClose}
+        onLocationSubmit={onLocationSubmit}
+        defaultMapProps={defaultMapProps}
       />
     </Provider>
   );

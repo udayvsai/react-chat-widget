@@ -4,6 +4,9 @@ import { Widget, addResponseMessage, setQuickButtons, toggleMsgLoader, addLinkSn
 import { addUserMessage } from '..';
 
 export default class App extends Component {
+  state={
+    showLocation: false
+  }
   componentDidMount() {
     addResponseMessage('Welcome to this awesome chat!');
     addLinkSnippet({ link: 'https://google.com', title: 'Google' });
@@ -16,7 +19,7 @@ export default class App extends Component {
     setTimeout(() => {
       toggleMsgLoader();
       if (newMessage === 'fruits') {
-        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }]);
+        setQuickButtons([{ label: 'Add Address', value: 'location' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }]);
       } else {
         addResponseMessage(newMessage);
       }
@@ -24,7 +27,10 @@ export default class App extends Component {
   }
 
   handleQuickButtonClicked = (e: any) => {
-    addResponseMessage('Selected ' + e);
+    if(e.value === 'location') {
+      return this.setState({ showLocation: true })
+    }
+    addResponseMessage('Selected ' + e.value);
     setQuickButtons([]);
   }
 
@@ -48,11 +54,17 @@ export default class App extends Component {
     alert('Edit clicked')
   }
 
+  onLocationSubmit = (details) => {
+    alert(JSON.stringify(details));
+  }
+
   render() {
+    // console.log(this.state.)
     return (
       <div>
-        <button style={{ position: 'absolute', right: 40, bottom: 150 }}>test</button>
+        <button onClick={() => this.setState({showLocation: !this.state.showLocation})}>test</button>
         <Widget
+          
           title="Bienvenido"
           subtitle="Asistente virtual"
           senderPlaceHolder="Escribe aquí ..."
@@ -63,6 +75,13 @@ export default class App extends Component {
           onEdit={this.onEdit}
           onFileUpload={this.onFileUpload}
           handleSubmit={this.handleSubmit}
+          onLocationSubmit={this.onLocationSubmit}
+          showMap={this.state.showLocation}
+          onMapClose={() => this.setState({ showLocation: false})}
+          defaultMapProps={{ 
+            lat: 17.4362,
+            lng: 78.4609,
+            apiKey: 'AIzaSyCV1WQkeoaA_aYvMeVXxrZkcdaitiQ34CA',}}
         />
       </div>
     );
