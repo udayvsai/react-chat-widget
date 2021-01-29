@@ -44,7 +44,14 @@ const MyMapComponent = withScriptjs(withGoogleMap((props: any) => {
 
 const AddressComponent = (props: any) => {
   const { lat, lng, apiKey } = props.defaultMapProps;
-  const [location, setLocation] = React.useState({lat: lat || D_LAT, lng: lng || D_LNG, address: '', doorNo: '', landmark: ''})
+  const [location, setLocation] = React.useState({
+    lat: lat || D_LAT, 
+    lng: lng || D_LNG, 
+    address: '', 
+    doorNo: '', 
+    landmark: '', 
+    rawData: ''
+  });
   const classes = useStyles();
   const G_MAP_URL = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`;
 
@@ -56,7 +63,7 @@ const AddressComponent = (props: any) => {
     .then(
       (result) => {
         const add = result.results[0].formatted_address
-        return setLocation({ ...location, lat: newLat, lng: newLng, address: add })
+        return setLocation({ ...location, lat: newLat, lng: newLng, address: add, rawData: result });
       },
       (error) => {
         console.log(error)
