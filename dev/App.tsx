@@ -59,10 +59,9 @@ export default class App extends Component {
   }
 
   render() {
-    // console.log(this.state.)
     return (
       <div>
-        <button onClick={() => this.setState({showLocation: !this.state.showLocation})}>test</button>
+        <button style={{ position: 'absolute', right: 40, bottom: 150 }} onClick={() => this.setState({showLocation: !this.state.showLocation})}>test</button>
         <Widget
           
           title="Bienvenido"

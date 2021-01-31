@@ -1,5 +1,5 @@
-@import 'variables/colors';
-@import 'common';
+@import "variables/colors";
+@import "common";
 
 .rcw-messages-container {
   background-color: $white;
@@ -10,14 +10,19 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.rcw-full-screen {
+.map-container {
+  background-color: $white;
+  height: 75vh;
+  max-height: 800px;
+}
 
+.rcw-full-screen {
   .rcw-messages-container {
     @include messages-container-fs;
   }
 }
 
-@media screen and (max-width: 800px)  {
+@media screen and (max-width: 800px) {
   .rcw-messages-container {
     @include messages-container-fs;
   }

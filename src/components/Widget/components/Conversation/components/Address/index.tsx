@@ -73,8 +73,7 @@ const AddressComponent = (props: any) => {
 
   return(
     <form className={classes.root} noValidate autoComplete="off">
-    <div>
-      {/* <CloseIcon onClick={props.onMapClose}/> */}
+    <div className="map-container">
       <MyMapComponent
         lat={location.lat}
         long={location.lng}
