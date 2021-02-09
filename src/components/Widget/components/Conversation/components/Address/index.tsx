@@ -72,8 +72,8 @@ const AddressComponent = (props: any) => {
   }
 
   return(
-    <form className={"map " + classes.root} noValidate autoComplete="off">
-    <div className="map-container">
+    <form noValidate autoComplete="off">
+    <div className={ classes.root + " map-container"}>
       <MyMapComponent
         lat={location.lat}
         long={location.lng}
