@@ -2,18 +2,13 @@ import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-const generateClassName = createGenerateClassName({
-  productionPrefix: 'cha',
-});
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const D_LAT = 20.5937;
 const D_LNG = 78.9629;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => createStyles({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -77,7 +72,6 @@ const AddressComponent = (props: any) => {
   }
 
   return(
-    <StylesProvider generateClassName={generateClassName}>
     <form className={classes.root} noValidate autoComplete="off">
     <div className="map-container">
       <MyMapComponent
@@ -107,7 +101,6 @@ const AddressComponent = (props: any) => {
       </div>
     </div>
   </form>
-  </StylesProvider>
   )
 }
 
