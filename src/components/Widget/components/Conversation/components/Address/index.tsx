@@ -11,7 +11,7 @@ const D_LNG = 78.9629;
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+      // margin: theme.spacing(1),
       display: 'flex',
       flexDirection: 'column'
     },
