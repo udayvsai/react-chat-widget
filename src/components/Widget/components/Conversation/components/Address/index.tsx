@@ -11,7 +11,7 @@ const D_LNG = 78.9629;
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
-      // margin: theme.spacing(1),
+      margin: theme.spacing(1),
       display: 'flex',
       flexDirection: 'column'
     },
@@ -72,8 +72,8 @@ const AddressComponent = (props: any) => {
   }
 
   return(
-    <form noValidate autoComplete="off">
-    <div className={ classes.root + " map-container"}>
+    <form className={classes.root} noValidate autoComplete="off">
+    <div className={"map-container"}>
       <MyMapComponent
         lat={location.lat}
         long={location.lng}
