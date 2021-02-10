@@ -30,6 +30,10 @@ type Props = {
   onFileUpload?: AnyFunction;
   onEdit?: AnyFunction;
   onRestart?: AnyFunction;
+  showMap?: boolean
+  onMapClose?: AnyFunction;
+  onLocationSubmit?: AnyFunction;
+  defaultMapProps?: object;
 }
 
 function Widget({
@@ -55,7 +59,11 @@ function Widget({
   handleSubmit,
   onRestart,
   onEdit,
-  onFileUpload
+  onFileUpload,
+  showMap,
+  onMapClose,
+  onLocationSubmit,
+  defaultMapProps
 }: Props) {
   const dispatch = useDispatch();
   const toggleConversation = () => {
@@ -106,6 +114,10 @@ function Widget({
       onRestart={onRestart}
       onEdit={onEdit}
       zoomStep={zoomStep}
+      showMap={showMap}
+      onMapClose={onMapClose}
+      onLocationSubmit={onLocationSubmit}
+      defaultMapProps={defaultMapProps}
     />
   );
 }

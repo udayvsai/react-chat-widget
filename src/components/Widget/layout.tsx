@@ -36,6 +36,10 @@ type Props = {
   showTimeStamp: boolean;
   imagePreview?: boolean;
   zoomStep?: number;
+  showMap?: boolean;
+  onMapClose?: AnyFunction;
+  onLocationSubmit?: AnyFunction;
+  defaultMapProps?: object;
 }
 
 function WidgetLayout({
@@ -62,6 +66,10 @@ function WidgetLayout({
   zoomStep,
   onRestart,
   onEdit,
+  showMap,
+  onMapClose,
+  onLocationSubmit,
+  defaultMapProps
 }: Props) {
   const dispatch = useDispatch();
   const { dissableInput, showChat, visible } = useSelector((state: GlobalState) => ({
@@ -140,6 +148,10 @@ function WidgetLayout({
           onFileUpload={onFileUpload}
           onRestart={onRestart}
           onEdit={onEdit}
+          showMap={showMap}
+          onMapClose={onMapClose}
+          onLocationSubmit={onLocationSubmit}
+          defaultMapProps={defaultMapProps}
         />
       }
       {customLauncher ?

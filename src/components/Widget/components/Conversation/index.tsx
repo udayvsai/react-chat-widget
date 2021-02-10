@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Messages from './components/Messages';
 import Sender from './components/Sender';
 import QuickButtons from './components/QuickButtons';
+import Address from './components/Address';
 
 import { AnyFunction } from '../../../../utils/types';
 
@@ -29,6 +30,10 @@ type Props = {
   onTextInputChange?: (event: any) => void;
   sendButtonAlt: string;
   showTimeStamp: boolean;
+  showMap?: boolean;
+  onMapClose?: AnyFunction;
+  onLocationSubmit?: AnyFunction;
+  defaultMapProps?: object;
 };
 
 function Conversation({
@@ -49,11 +54,17 @@ function Conversation({
   sendButtonAlt,
   onRestart,
   onEdit,
-  showTimeStamp
+  showTimeStamp,
+  showMap,
+  onMapClose,
+  onLocationSubmit,
+  defaultMapProps
 }: Props) {
   return (
     <div className={cn('rcw-conversation-container', className)} aria-live="polite">
-      <Header
+      {showMap ? <Address onMapClose={onMapClose} onLocationSubmit={onLocationSubmit} defaultMapProps={defaultMapProps} /> :
+      <>
+        <Header
         title={title}
         subtitle={subtitle}
         toggleChat={toggleChat}
@@ -73,6 +84,8 @@ function Conversation({
         onEdit={onEdit}
         buttonAlt={sendButtonAlt}
       />
+      </>
+      }
     </div>
   );
 }
